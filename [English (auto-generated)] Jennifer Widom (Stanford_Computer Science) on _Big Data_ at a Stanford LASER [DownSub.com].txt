@@ -1,0 +1,1326 @@
+uncommon is a soccer ball soccer or the
+
+loss of the creature has been my talk
+
+okay big data big discoveries big
+
+fallacies let's start by answering the
+
+question what is big data anyway what
+
+does it mean I'm sure all of you
+
+occurred it probably too much I'm going
+
+to give you a quick definition big data
+
+is the process of collecting large
+
+amounts of data and then actually doing
+
+something with it so where is that data
+
+coming from let me try to revise this
+
+where is that data coming from could be
+
+coming from computers that's one of the
+
+most common things that could be coming
+
+from sensors embedded in various places
+
+it could be coming from people and what
+
+does it mean to do something with that
+
+data well we might use it to make
+
+decisions we might use it to make
+
+predictions we might have a hypothesis
+
+we want to confirm and we need data to
+
+do that or we might just want to gain
+
+some insight from the data now you've
+
+probably also heard the term data
+
+science and none of these definitions
+
+are perfect but i'm going to say that
+
+data science is the science of going
+
+from 1 to 2 of going from the collected
+
+data to some insight some confirmation
+
+of hypothesis something you're doing
+
+with the data somebody recently asked me
+
+the question is Big Data of bad and my
+
+answer to that is well 30 years ago was
+
+computer programming a fad people might
+
+have thought so at the time I would
+
+argue that it wasn't at the time and
+
+that's proven itself out I would say
+
+that the ability to collect data is only
+
+going to increase over time I don't see
+
+that slowing down and the ability to
+
+analyze that data will only improve so I
+
+don't see that anything is going to go
+
+away and that's my argument that this is
+
+not a bad okay so what am I going to do
+
+in this talk I promise discoveries
+
+fallacies and so on what I'm going to
+
+start is with a few success stories of
+
+big data things I hope that you can
+
+relate to relatively quick just go
+
+through some examples I think you'll all
+
+be able to generate more examples for
+
+yourself
+
+everyday experience to spend the
+
+reasonable amount of time on the
+
+pitfalls it's going to get slightly
+
+technical but I think most of you will
+
+probably be able to follow most of it
+
+and then if there's time I have one last
+
+slide that is just about some techniques
+
+and tools and this is just sort of to
+
+demystify terminology and then use these
+
+at your next cocktail party law firm
+
+okay so here's my first big data success
+
+story and this is traffic so most of you
+
+probably use Google Maps or something
+
+similar when you want to find out what
+
+this happening with the tripod you pull
+
+it up and you see the red is where the
+
+traffic is stopped yellow is where it's
+
+you know partially stopped and green is
+
+where things are good everybody know
+
+where that data is coming from how it's
+
+been collected being collected from your
+
+smartphones so there are not sensors in
+
+the streets telling you how far those
+
+that how fast the cars are moving then
+
+you use your phone you have agreed to
+
+transmit your location and there are
+
+enough cars going around transmitting
+
+their location on a you know
+
+second-by-second basis to determine how
+
+fast those cars are moving and that's
+
+where that data is coming from so here
+
+books oh you told me not to press that
+
+button no matter what you do no press
+
+on my clicker that's one ok let's
+
+Hanuman all right here we go anyway this
+
+is an example where data is being
+
+collected in this case has been
+
+collected but from everybody smartphones
+
+and it's a lot of data and we're doing
+
+something with other people are doing
+
+something with it which is to make these
+
+maps that are generally used for useful
+
+for people alright another example that
+
+you're probably very familiar with is
+
+recommendation systems so Amazon will
+
+tell you what they think you ought to
+
+buy Netflix will tell you what movies
+
+that you want you ought to be watching
+
+how do they do this they do this by
+
+collecting a huge amount of data so they
+
+not only collect what everybody buys
+
+they also collect what they don't buy
+
+what they look at and don't buy what
+
+they buy together what movies they watch
+
+how they rate the movies you know what
+
+movies are rated together and as much as
+
+possible as much information about those
+
+people as they can get their hands on
+
+gender age where they live and so forth
+
+and all that is put together such as
+
+some pretty sophisticated algorithms
+
+that tell you what they think you're
+
+going to let you may not agree with them
+
+but that's what they're doing so again
+
+collecting a lot of data about
+
+everybody's buying or watching patterns
+
+and about their personal information and
+
+then doing something with it which is
+
+recommendation and by the way you will
+
+as you can imagine advertising follows a
+
+generally similar pattern which is
+
+slightly more distasteful okay third
+
+example for any sports fans out there so
+
+I'm not heavily familiar with sports but
+
+I have student in my freshman class was
+
+very interested in sports data and he
+
+uncovered the following apparently in
+
+basketball all of the games are videoed
+
+every detail of the games and then they
+
+are computer analyzed to generate
+
+statistics so in baseball for example
+
+you know their statistics is very
+
+straightforward than people are just
+
+writing down and hit them all and you
+
+got to this base but in basketball it's
+
+a little more subtle dating the computer
+
+analyzes the video and in what this one
+
+particular example they found that this
+
+one player kobe bryant where he is
+
+on the occasions that he took this one
+
+shot when his team had the ball the
+
+pull-up jumper going to his left hand on
+
+those occasions the possession of their
+
+team converted to on average 0.1 points
+
+less than they got over all the times
+
+they edible so if they the opposing team
+
+could force Kobe Bryant to the pull-up
+
+jumper going left hand then that brings
+
+down the expected score of that team and
+
+apparently this the point one point over
+
+a single game over a whole season is
+
+very significant and so this was
+
+something that was actually used this
+
+cartoon here is a little bit related to
+
+that here's my soccer ball it's not huge
+
+but this cartoon says remember the other
+
+team is counting on big data insights
+
+based on previous games so kick the ball
+
+with your other foot so this is another
+
+example and this is having all over
+
+sports like baseball again we know those
+
+statistics have been around for a long
+
+time people know Moneyball but in sports
+
+like basketball it's generally video
+
+hockey also and it's going on all over
+
+the place collecting everything they can
+
+about the games and then doing something
+
+with it which is you know trying to
+
+figure out their strategy for the next
+
+game okay took a couple more examples I
+
+picked this one partly because well two
+
+reasons one is this example comes from
+
+right where we're standing the Stanford
+
+Medical School and the second because
+
+this project was around way before big
+
+data was popular this is a project done
+
+by Russell and a faculty member here
+
+where he's been collecting over I think
+
+it's better maybe almost a couple
+
+decades now information about the
+
+relationship between human genetic
+
+variation and drug responses and he's
+
+just collected this information and
+
+curated it and put it in a big database
+
+for other researchers to use and I
+
+wanted to point this out also because in
+
+this case and this is a pretty common
+
+one in science he's not actually
+
+collecting the data and necessarily
+
+himself doing something with it he's
+
+collecting the data he's curating that
+
+data and he's making it available for
+
+others and by the way curating data it's
+
+a sort of catch-all term for making sure
+
+the data is clean and consistent and
+
+usable and most people who embark on a
+
+Big Data project will find that they
+
+spend ninety percent of their time
+
+getting their data curated and cleaned
+
+up and ready and ten percent of their
+
+time doing the actual analysis again I
+
+taught a freshman seminar where the
+
+Alden projects and they were just
+
+floored by that ratio there another
+
+example sort of along the same lines is
+
+ocean health so at this point there are
+
+about 44,000 some sensors out there in
+
+the ocean that are generating all kinds
+
+of measurements their physical about the
+
+waves their chemical their biological
+
+and that is they're all being assembled
+
+put together and made available for
+
+scientists to use another example of
+
+gathering data curating data but then
+
+putting it out there okay so that's
+
+going to be the end of my success
+
+stories but again I don't think many of
+
+you will have any difficulty thinking of
+
+your own so now I'm going to get into
+
+the pitfalls and I'm going to zoom
+
+through quite a few of them correlation
+
+causation underfitting overfitting
+
+sampling bias privacy and then I have a
+
+couple that don't fall in a category and
+
+they happen to both kick out in Google a
+
+little bit I hope all the time to get to
+
+them I know I'm moving fast but also be
+
+available afterwards okay correlation
+
+and causation are two things that are
+
+often mixed up people frequently like to
+
+say correlation does not imply causation
+
+and so people often mix us two things up
+
+let me try to explain them for you
+
+correlation and causation are talking
+
+about relationships between data values
+
+so correlation says we've got two values
+
+that tend to track each other they go up
+
+together they go down together causation
+
+says one value influences another
+
+value and I'm just going to give you
+
+some examples so for correlation height
+
+and shoe size are correlated people who
+
+are taller to have bigger feet smaller
+
+smaller fee grades and test scores tend
+
+to be correlated people with high grades
+
+often at high test scores and vice versa
+
+okay causation is an example where one
+
+thing actually directly influences the
+
+other for example education level baby
+
+used to set someone's salary there's a
+
+causation their temperature if it's
+
+warmer people might buy ice cream the
+
+important thing to know is that neither
+
+one of these implies the other so in
+
+correlation the two examples I gave it's
+
+not that the height is causing your
+
+choose to be bigger or the grades are
+
+causing your test scores to be higher
+
+okay and even in causation although
+
+education level may influence salary you
+
+can have your salary go up without
+
+having a higher education level or
+
+people there might be a spike in ice
+
+cream sales even on a cold day so
+
+there's not correlation there there's
+
+causation here's another favorite
+
+cartoon of mine this one is really old
+
+actually and this child is flying on the
+
+airplane because mother and says I wish
+
+they didn't turn on that seatbelt sign
+
+so much every time they do it gets bumpy
+
+so this is an example this is an example
+
+actually of causation but he's got the
+
+causation in the wrong direction they're
+
+a little bit more about causation and
+
+correlation frequently but not always
+
+when two things are correlated is
+
+because there's this hidden thing called
+
+a confounding variable that has
+
+causation to both of the correlated
+
+values so if you have you might have a
+
+situation where a and B are correlated
+
+because there's a hidden see that
+
+implies both a and B and I'll just give
+
+you an example we might have the fact
+
+that the homeless population and the
+
+crime rate in an area are correlated
+
+when homeless population and try might
+
+go up together they go
+
+together it's not because the homeless
+
+people are committing crimes and it's
+
+not because crime is causing people to
+
+be homeless so there's no direct
+
+correlate causation but there is a
+
+hidden causation of this count founding
+
+variable in this case where there might
+
+be which is unemployment which itself
+
+causes populations that have homeless
+
+and the crime rate and when unemployment
+
+goes up those other two things go up
+
+together now there's often there's also
+
+cases where things appear correlated but
+
+there is no causation and in fact they
+
+don't cause each other at all and that's
+
+really the problem that can come up and
+
+data analysis and there's a few
+
+entertaining ones i'm going to give you
+
+for example let me show you let me just
+
+explain this graph i'm going to show you
+
+photographs that look kind of similar
+
+we've got a timeline here from 2002 2009
+
+and the red line is plotting the total
+
+revenue generated by our caves okay over
+
+that period there's the scale the black
+
+line is computer science doctorates
+
+awarded in the US and that's the that's
+
+the scale over here and we can see
+
+remarkably those two things track very
+
+nicely um I don't think there's any
+
+causation involved there at all not even
+
+a hidden confounding variable I'm pretty
+
+sure similar behavior drivers killed by
+
+collision with a railway train and US
+
+crude oil imports from Norway closely
+
+correlated I can go on and on letters in
+
+the winning word of the Scripps National
+
+Spelling Bee is correlated very close to
+
+the people killed by spiders and the age
+
+of Miss America remarkably correlated
+
+with people who are murdered by steam
+
+hot vapor or hot objects okay so these
+
+are all very interesting actually these
+
+all have from a website or a service
+
+that has gathered thousands maybe tens
+
+of thousands of these graphs of these
+
+trends and you can go on there and you
+
+can just pick one and say tell me what's
+
+correlated with this one because there's
+
+so many of them it's pretty easy to find
+
+of things that have nothing to do with
+
+each other that show similar curve so
+
+it's kind of fun you can find this all
+
+over the web now people haven't had a
+
+great time playing with that website
+
+okay done with causation and correlation
+
+now let's talk about underfitting and
+
+overfitting which is another problem
+
+that mistake that people can make in
+
+data analysis underfitting is drawing
+
+conclusions from data that are
+
+effectively too simplistic and my
+
+explanation is a little x let's get to
+
+it I think you get the idea okay so as
+
+background I'm going to briefly explain
+
+to you the idea of regression regression
+
+basically says I have some data points
+
+and I'm going to try to extract a trend
+
+from those data points that's the
+
+high-level idea of what regression is
+
+about so here's an example where we have
+
+a graph of people's heights and weights
+
+and I couldn't figure out what this
+
+scale is but anyway it's a graph of P
+
+this is a set of people in the
+
+population and each data point
+
+represents someone's height and weight
+
+for example this is 60 and 80 okay and
+
+when we gather all this data and then
+
+there's an algorithm for drawing a line
+
+that's called a linear regression
+
+through those data points and why can
+
+use that line for is to predict the
+
+height or weight of someone else so
+
+after you've taken the sample of the
+
+data you draw the line or someone comes
+
+along with you know height of 53 then
+
+you would go right up to this point the
+
+line 7 and predict that's their weight
+
+okay that's what linear regression does
+
+another example here is we have high
+
+school GPA and we have university GPA
+
+and you can see there's some you know
+
+trend there you draw the line and that
+
+would tell you okay if someone comes
+
+along with a 3.12 GPA i'm just going to
+
+go up to the line of predictor you can
+
+go the other way to you can predict what
+
+their high school GPA was from the
+
+university or their how you from their
+
+weight okay now there is an algorithm to
+
+draw the best line for the point so you
+
+get a set of points and there is a way
+
+to draw the line basic
+
+it adds up to go now what do i do not
+
+that ok I'm giving away my thing here ok
+
+there is an algorithm for figuring out
+
+how to draw the line you basically try
+
+to minimize the sum of the residents
+
+from the points for line activists on
+
+their squares but that doesn't matter
+
+that much now i'm going to show you why
+
+this doesn't always work it really only
+
+works for you when you have a nice trend
+
+and underfitting is when you draw a line
+
+but you're really not capturing you know
+
+the real shape of the data so i'm going
+
+to point out that there are four
+
+different sets of points that look
+
+completely different than all have
+
+identical lines and here they are so the
+
+algorithm to draw the regression line
+
+for each of these will this is the best
+
+line it's absolutely identical in for
+
+each of these I think you would agree
+
+the points themselves are not similar at
+
+all here we ought to be catching that
+
+vertical thing here we ought to have
+
+that curve and so on so the process of
+
+underfitting is in too simplistic here
+
+the line is too simplistic this one
+
+looks ok but for the rest too simplistic
+
+to capture meaning in the ok we're
+
+under fitting is too simplistic
+
+overfitting is too specific and again
+
+I'm just going to show you example now
+
+let's say we're not always going to draw
+
+lines we're willing to draw curves to
+
+capture the trend in our data so here's
+
+an example that one would say is classic
+
+overfitting we have these points and we
+
+draw a curve that tries to capture every
+
+little change in those points that's
+
+over fitting the same data by the way
+
+would be under fit with a line because
+
+it's missing that there's a shape here
+
+what would be just right would be to get
+
+occur something like this in this
+
+particular case doing regression here's
+
+another example of overfitting and this
+
+is another comic I don't know how well
+
+you can read this in your search
+
+expected to read all that this is using
+
+regression to try to decide who wins
+
+presidential elections which is a very
+
+timely example so here at the beginning
+
+well it's the regression says the
+
+increment never with the ink youment
+
+incoming something incumbent never wins
+
+but then there's somebody who actually
+
+violated that then they say okay well no
+
+congressman has ever become president
+
+and so with everything that happens the
+
+regression takes that very specific
+
+thing and says that's the algorithm for
+
+deciding who's going to win and it's
+
+kind of fun of people you know they're
+
+fun examples like ash goes Mississippi
+
+so goes the nation and so on okay so
+
+that's another example of overfitting
+
+that's not an actual graph okay next
+
+pitfall sampling bias so so far I've
+
+been talking about pitfalls in doing
+
+something with the data we've collected
+
+the data and now we're going to do
+
+something and we make mistakes and in
+
+doing something causation correlation
+
+underfitting over a day now let's talk
+
+about mistakes that can be made in the
+
+actual collection of the data and i'm
+
+going to use another presidential
+
+election example i'm going to wind back
+
+to nineteen thirty-six landon versus
+
+Rose about how many people in the room
+
+know this story one okay good you all
+
+learn something you hear ok so it's 1936
+
+these are the people who are being
+
+running off for president and at the
+
+time the Reader's Digest magazine was
+
+known for very accurate predictions of
+
+presidential races and other things in
+
+1932 they had a one percent error in
+
+their prediction of the presidential
+
+election so in 1936 they surveyed a
+
+whopping ten percent of the population
+
+twenty-five percent percent of those
+
+returned the survey they predicted from
+
+that sample that Landon
+
+in a landslide well Roosevelt won so in
+
+fact it was a really bad prediction they
+
+were nineteen percent off which is at
+
+that time was the worst error in any
+
+major opinion and the problem was that
+
+they're sampling method was not good it
+
+was biased there were two kinds there
+
+was this what's known as survey sample
+
+bias and non-response bias and the
+
+survey sample bias is that at the time
+
+it was the depression and they sent the
+
+surveys to their there are people who
+
+are subscribing to the magazine they
+
+just home looks to send the survey and
+
+they were very much biased towards the
+
+wealthier segment of the population just
+
+because of who they sent the survey to
+
+non-response bias has to do with who
+
+returns this serving twenty-five percent
+
+returned the surname but again that was
+
+skewed towards the wealthier 25% we
+
+actually sent it in and therefore they
+
+got a wrong a wrong result and by the
+
+way another example is sort of
+
+experiments that are done with your
+
+people's mobile phones even when they're
+
+agreeing to do it people who have
+
+iphones are much wealthier in general
+
+than people who have androids so when
+
+there's ever a survey that's done on
+
+iphones for example that will get a very
+
+skewed by a skewed percent sample of the
+
+population so very similar type of thing
+
+now everybody's favorite topic is
+
+privacy i'm going to talk about this
+
+topic very briefly some of you might
+
+have had a little thinking about that
+
+when you realize your phone was being
+
+tracked to make google maps you opt it
+
+into that probably or didn't opt out
+
+anyway so there have been many cases of
+
+improper covert collection of individual
+
+data and we all know about Snowden's so
+
+on but there's a lot of collection going
+
+on that you might not be aware of data
+
+can kind of bleed legally through
+
+surprising channel so the example i'm
+
+going to give here is angry birds
+
+anybody who wants to play Angry Birds I
+
+think it sort of out of fashion now but
+
+at the time anybody who played Angry
+
+Birds agree to a bunch of data being
+
+transmitted because they are signing up
+
+for the game and most people don't read
+
+it you'll sign up for an app it says you
+
+know screen after screen okay fine and
+
+one thing is that you agree to way to
+
+play Angry Birds to transmit all the
+
+information about the Wi-Fi networks
+
+that your phone can see any time okay
+
+and why do they want that information
+
+well it's what they really are trying to
+
+get is location information so even if
+
+you say you don't want to be trapped on
+
+your phone using the location using the
+
+GPS it has been shown that by looking at
+
+what Wi-Fi networks you can see in a
+
+given time your position can be put
+
+almost as accurate as a GPS position
+
+that experiments have shown that to be
+
+the case so beware your your private
+
+data is being transmitted not always in
+
+ways that you expect okay two more
+
+pitfall examples and again I said for
+
+timekeeping on Google twice here but
+
+that's probably because Google is doing
+
+a lot of the Big Data things around here
+
+what is about Google Flu Trends and the
+
+other is about google translate so I
+
+don't know how many of you notice the
+
+news around two thousand six or seven
+
+that Google had shown that they can
+
+predict the flumes passing across the
+
+United States more accurately than the
+
+Center for Disease Control and they were
+
+doing it by looking at what people were
+
+searching for they were searching for
+
+flu symptoms they knew where they were
+
+searching from so that was pretty
+
+impressive until it failed so the third
+
+year of the little
+
+as they were way off they were off the
+
+like fifty percent it was amazing it
+
+turned out that year maybe there was
+
+something going on with a flu shot or
+
+maybe people too are we willing flu
+
+trends but they weren't googling the flu
+
+stuff because they have the flu and so
+
+that also spawned the phrase which I
+
+like big data humorous where people were
+
+you know overconfident that simple
+
+things like web search terms we're going
+
+to tell you the truth about good stuff
+
+another example is google translate so
+
+actually google translate is an amazing
+
+example of take a lot of data and do
+
+something with it the way Google
+
+Translate works and i'm talking about
+
+translating from one language to another
+
+many of you have probably used in it not
+
+bad the way it action works is it's
+
+learning how to translate automatically
+
+it has been going around the web the
+
+computers have looking at cases where
+
+there are things in two languages
+
+comparing them mapping them and learning
+
+the mappings between pairs of languages
+
+and that's how it has learned to new
+
+translation nobody's I mean there's
+
+people that are tuning it but nobody's
+
+sitting there and teaching it how to
+
+translate it's doing it from examples
+
+the problem comes and this is a real
+
+problem when the examples that excuse me
+
+were actually translated by khet and it
+
+doesn't know that and so somebody put
+
+two things up there because they use
+
+google translate and if there's a
+
+mistake it just continuously reinforces
+
+itself so that's another example of
+
+pitfalls okay and that's negativity I do
+
+think the discoveries outweigh the
+
+fallacies I think that balance between
+
+those will only improve big data is not
+
+a fad is you know my name
+
+since here last one minute quick
+
+careening through what are like five or
+
+ten different courses at Stanford in 30
+
+seconds data management systems data
+
+management systems have been around for
+
+decades Oracle relational database
+
+management systems 40 50 years huge
+
+industry one will never go away it's
+
+about convenient management of large
+
+amounts of data banks use this the
+
+Registrar uses it and then you ask
+
+well-formed questions get me all the
+
+dorms that sophomores are living in find
+
+all people whose bank account is getting
+
+too low that's what those are about
+
+relational simple databases now there's
+
+things called no sequel systems but
+
+they're not opposites at all that's what
+
+they do data mining is fundamentally
+
+different data mining is about looking
+
+for patterns and data so instead of
+
+asking a specific question you say
+
+here's all my data find some patterns
+
+patterns things that are frequently
+
+bought together would be a pattern
+
+people who buy this buy that that's the
+
+type of thing data mining does and
+
+lastly machine learning is the process
+
+of using a set of data to create models
+
+about what our fins are or to predict
+
+the future so regression that I showed
+
+you as an example we're using one data
+
+set and trying to generalize and that's
+
+what people mean by machine learning
+
+regression clustering is another machine
+
+learning technique classification okay
+
+so who five courses in 30 seconds and
+
+i'm done
+
