@@ -1,0 +1,3476 @@
+each year microsoft research helps
+
+hundreds of influential speakers from
+
+around the world including leading
+
+scientists renowned experts in
+
+technology book authors and leading
+
+academics and makes videos of these
+
+lectures freely available
+
+okay so it's my pleasure to introduce
+
+Michael kafir Ella he's visiting us here
+
+from the University of Washington he's
+
+interviewing and at his work at the
+
+University of Washington has largely
+
+included a lot of work on information
+
+extraction and sort of viewing the web
+
+as a source of information almost in a
+
+database sense he's done a lot of really
+
+cool stuff including he sort of co was
+
+the co-founder for nudge which is an
+
+open-source search engine and Hadoop
+
+which is an open-source sort of
+
+MapReduce project and so with that
+
+Michael ah hi everyone thanks for coming
+
+I really appreciate it my name is mike
+
+i'm going to be talking about my
+
+research at UW today the title of it is
+
+going to be extracting and managing
+
+structured web data this is joint work
+
+with my advisors my team of advisors are
+
+or net seoni dance you chew and then
+
+along halevi who is a once and maybe
+
+future UW professor we can hope so it
+
+also and also a number of my fellow
+
+students anyway so let's get started if
+
+you've done a lot of work in the web
+
+area you'll instantly recognize this as
+
+an extremely realistic rendering of a
+
+web page it might come be a little more
+
+clear if we do something like this you
+
+draw a kind of a semi-fictional graph
+
+around it now for the last ten years or
+
+maybe even more the standard academic
+
+way of modeling the web has been as a
+
+hyperlink graph of these unstructured
+
+bags of text and the only kind of
+
+structure comes from the links that the
+
+pages might make to each other and to
+
+some limited extent the url url
+
+hierarchy however in real life this is
+
+emphatically not the case here's a
+
+fairly unremarkable web page and what
+
+you can see at the bottom of this
+
+webpage is something that looks an awful
+
+lot like a traditional relational
+
+database a small one but a structure
+
+database nonetheless in the first column
+
+here you've got presidential names it
+
+has even got a label here you've got
+
+party which with the label party here
+
+you've got a typed column of numbers
+
+dates for the president's term and so on
+
+oh I should mention that I feel free to
+
+answer ask questions in the middle or
+
+whatever whenever you like and so here's
+
+a web page that isn't structured it's
+
+just raw HTML no one's using any kind of
+
+structured format to describe their data
+
+but it's structured data nonetheless
+
+here's another page that seems about as
+
+textual as it gets but if we look at one
+
+small sentence here albert einstein was
+
+born in germany on such and such date
+
+this is undeniably natural language text
+
+but it's also text that we can process
+
+by machinery straightforwardly and that
+
+we can extract a very well-defined typed
+
+piece of data from you can imagine that
+
+if we were to process many of these web
+
+pages all of which describe the was born
+
+in relationship for many different
+
+people in many different places we could
+
+compile a very small database out of it
+
+so ah you in the modern web that you and
+
+I use every day the real life these
+
+real-life web pages actually contain an
+
+awful lot of structure that is obvious
+
+to you and me but our machines our
+
+database tools right now tend to ignore
+
+it search engines at least at the query
+
+at least on the side that is exposed to
+
+us totally ignore it the only kind of
+
+query you can do against a search engine
+
+is to mumble out a few words and you get
+
+backed a ranked list of URLs in response
+
+there's no kind of query you can do on
+
+who was born on certain dates or where p
+
+certain scientists were born in a
+
+traditional database you do have a much
+
+more expressive query language but they
+
+certainly can't handle webpages the
+
+import interfaces not only assume the
+
+data is relatively clean and well
+
+structured and certainly not with all
+
+the strange advertising and other text
+
+around it but also they make certain bad
+
+assumptions about scale and I to some
+
+extent that's from a systems perspective
+
+but it's also from a user an
+
+administrative perspective so for
+
+example it's common to assume that every
+
+table in your database will at least be
+
+somewhat human a human being will know
+
+the name of each of your tables that
+
+might be reasonable when you have a few
+
+dozen tables I know some complicated
+
+schemas have you up to thousands in
+
+which case you have to do a little bit
+
+of trickery but on the web we have
+
+hundreds of millions of tables it's
+
+unreasonable to assume that anyone can
+
+even know the existence of more than
+
+just a tiny number of these so my
+
+research vision that I'm going to
+
+describe you a few in early steps toward
+
+today is something called us call the
+
+structured web which is what we had an
+
+automatically cleanly structured version
+
+of all the structured data that's
+
+already out there but in
+
+kind of a primitive form right now
+
+another way of saying this is that we
+
+have the database of everything that's
+
+compiled from the web text that we're
+
+all familiar with so one of the things
+
+that you could build on top of this
+
+would be a highly expressive version of
+
+web search so for example you could ask
+
+please tell me some inventors or
+
+scientists and the year of their birth
+
+and what they might have invented so you
+
+could express it into kind of data log
+
+style query like the kind of put up
+
+there and I had a paper a couple years
+
+ago that describes how you might
+
+implement a system like this you might
+
+get back something like this where you
+
+have one column for the inventor of the
+
+scientists another column for their
+
+inventions and a third column describing
+
+the year of their birth and so what you
+
+would like is something that has the
+
+breadth of a search engine but the
+
+expressiveness of a traditional database
+
+other kinds of applications you could
+
+build on top of this sort of structured
+
+database of everything is a very easy
+
+way to do data analysis and reuse so for
+
+example ah someone in a knowledge worker
+
+using some kind of Excel style
+
+application could simply say show me
+
+data on population statistics in a
+
+number of cities and rather than having
+
+to compile that data by hand or clean it
+
+in advance you're the system could find
+
+that data automatically and could
+
+instantly drop you into some kind of
+
+analysis and visualization tool another
+
+would be to do data integration over a
+
+lot of these things so one query you
+
+might want to do is to compile all the
+
+program committee members from a certain
+
+conference sigma in this case over all
+
+the years that this conference has ever
+
+been in business now that data exists on
+
+the web it's just scattered over a dozen
+
+different websites in a lot of different
+
+formats so one year was in HTML tables
+
+and other enlists another year in text
+
+they do one euro was in a JPEG who knows
+
+but no one's ever intended that data to
+
+be reused so you know it should be since
+
+that date is out there it should be very
+
+easy to express kind of structural
+
+queries over that data and this is a bit
+
+more of a vision or more than a vision
+
+we actually have that implemented to a
+
+substantial degree and that would be the
+
+last project I talked about today so
+
+here's a kind of graphical description
+
+of a lot of the projects I've worked on
+
+recently I know it all was an
+
+information extraction project and it
+
+gave birth to a few others like a
+
+bindings engine which was more index
+
+support and text Runner and then I also
+
+worked on some open source projects
+
+notch in Hadoop I'm not
+
+to talk about most of these today the
+
+few i am going to talk about are these
+
+three texts runner which operates over
+
+natural language text to generate the
+
+structured information web tables which
+
+obtained structured information from a
+
+raw HTML tables it finds on the web and
+
+the octopus project which allows the
+
+user to tie together some of this
+
+extracted data and so those three
+
+different subject matters text tables
+
+and then both lists and tying together
+
+are going to form the structure of the
+
+talk today I should make one note that
+
+people often think of the Deep Web
+
+meaning databases that have an HTML
+
+front-end that you can only access with
+
+an active post or a query against them
+
+and that intersects with the deal with
+
+the structured web but it's not the same
+
+thing a lot of the HTML tables that we
+
+find are clearly not dynamically
+
+generated from a database and due to the
+
+extent that you can detect dynamic
+
+generation by using a parameterized URL
+
+for example then a very substantial
+
+number of the tables that we look at
+
+have nothing to do with the Deep Web and
+
+obviously natural language text has
+
+nothing to do with it and in the future
+
+there may be all sorts of kinds of
+
+sources of structured data that will be
+
+very different from this so you if I had
+
+to describe the the sort of style of
+
+work I'm going to do the motivating
+
+problem would be that information
+
+extraction has been around for a long
+
+time but though a lot of its very basic
+
+assumptions don't scale to the web as a
+
+whole one is that we have to be domain
+
+and dependent if we're actually going to
+
+process all the web's information that
+
+we can't assume that there's any kind of
+
+topic specific extraction rule or
+
+training data or anything else a lot of
+
+projects in the past have focused on
+
+extracting say corporate intelligence
+
+information and that that's far too
+
+limiting for the kind of vision that we
+
+have for this data another's that we
+
+have a very reasonable model of human
+
+use so we don't require that every data
+
+source you have already have a wrapper
+
+written by a human administrator you
+
+know we need three million human
+
+administrators just to track the data we
+
+already have and further that we don't
+
+assume users have crazy information
+
+about the web that's just unreasonable
+
+then finally a more straightforward
+
+problem is that we need scalable
+
+computer systems for a lot of these
+
+things that information extraction
+
+historically has never considered
+
+how to solve problems from a systems
+
+aspect and to solve these will be
+
+drawing on number of techniques from
+
+both databases AI and systems literature
+
+as well so let's jump into the first
+
+project which it processes natural
+
+language text so the goal here is to
+
+take a sentence like this one einstein
+
+was born in germany and transform it
+
+into a structured couple that has two
+
+entities Einstein in Germany which are
+
+drawn from you a a technical definition
+
+of an entity's a little bit hard but
+
+it's an identifiable object somewhere in
+
+the world and they are tied together
+
+with by the binary was born in a
+
+relationship in this case so the goal is
+
+to take a corpus of text and amid a
+
+number of these accurate fact extraction
+
+tuples now the in this case a lot of
+
+these textual extraction systems have
+
+the problems that i just mentioned they
+
+either require handwritten extraction
+
+rules or hand tag training data and
+
+that's problem not only from a
+
+scalability perspective but also they
+
+tend to be tagged on a very clean or
+
+particular corpus like the corpus of
+
+Wall Street Journal text right which has
+
+not a lot to do with the corpus of web
+
+text they have a lot of different
+
+characteristics they also require you
+
+often to specify the interesting
+
+relationships ahead of time if you want
+
+to complete your task in any kind of
+
+reasonable amount of time this is not
+
+something that you can ask the system to
+
+do you the set of it's a difficult it's
+
+difficult to say how many relations
+
+there are interesting relations there
+
+are in the universe but we guess it
+
+numbers at least in the thousands and if
+
+you look at just the number of unique
+
+relationship style strings it's in the
+
+hundreds of thousands so we can't ask a
+
+system to enumerate these ahead of time
+
+we wanted to process the entire corpus
+
+in one fell swoop and then finally a lot
+
+of these systems require a very
+
+expensive deep parts of the data using
+
+your natural language parsing techniques
+
+and that's going to be very expensive at
+
+a very large scale so our system text
+
+Runner is something we call open
+
+information extraction which is not only
+
+do which is first of all oh I should say
+
+it solves a lot of these problems first
+
+of all it's a domain-independent so we
+
+have no topic-specific extraction rules
+
+no training data and no administrators
+
+and mark things up the target relations
+
+are discovered as we go and then also we
+
+do a number of tricks to make a
+
+computationally efficient at scale so
+
+the suit the systems built in three
+
+steps in the first stage we build what
+
+we call an extraction classifier or a
+
+candidate classifier and the goal of
+
+this classifier is going to be a black
+
+box that can process a large amount of
+
+text and whenever it comes up with a
+
+candidate extraction something that
+
+looks roughly like a fact triple it'll
+
+say yes rather than know the way we're
+
+going to do this is by first running a
+
+very expensive parser on a relatively
+
+small subset of the text to try to
+
+generate some very reliable examples of
+
+extraction once we have those examples
+
+we can then we didn't generate a series
+
+of very inexpensive features on top of
+
+it so things like simple part-of-speech
+
+tagging of the words or punctuation use
+
+or a handful of other techniques and
+
+then that gives us a training set that
+
+we can use where we map those
+
+inexpensive features to a set of what we
+
+believe are very accurate true false
+
+declarations or whether it's a good
+
+extraction or not in the second stage we
+
+take that train classifier and we run it
+
+over the entire corpus I and you know
+
+this is very inexpensive technique and
+
+the goal here is that by doing this
+
+trick we've reduced the amount of time
+
+from being you ordered dr that is the
+
+number of documents and the number of
+
+relations to simply being a function of
+
+the number of documents in our corpus
+
+then finally on you we don't believe
+
+that this extractor is actually going to
+
+work all the time in fact a lot of time
+
+it's not going to work at all so we use
+
+a frequency based assessment to try to
+
+figure out what a good extraction is and
+
+the observation here is that true facts
+
+will be relatively popular and agreed
+
+upon by people whereas untrue ones will
+
+be idiosyncratic that a you might have
+
+an untrue fact or one that's incorrectly
+
+parsed will only appear once or twice on
+
+the web but the fact that New York is a
+
+city or albert einstein was born in
+
+germany we expect to see those many many
+
+times over the entire web now this runs
+
+into problems when you have true but
+
+unpopular facts or alternatively when
+
+you have conspiracy theories now the set
+
+of conspiracy theories is relieved Utley
+
+it will fairly low the set of true but
+
+unpopular facts is much higher and one
+
+of my fellow students is in a lot of
+
+research into how you can get the recall
+
+up I'm not going to talk about that
+
+today but you for the set
+
+facts that do appear for said a large
+
+set of common facts this technique works
+
+fairly well so here's a brief sample of
+
+web pages and what we find in them so
+
+we've on a UH a large sample of several
+
+million web pages we found about 11.3
+
+raat tuples I should um those are unique
+
+tuples which have already been
+
+deduplicated of those we believe about
+
+7.8 million are what we call well-formed
+
+so that the entities make some semantic
+
+sense and the relationships make sense
+
+as well you these are strings that you
+
+and I would would guess at is a good
+
+title for a small database of these 7.8
+
+million about 1 million are concrete
+
+assertions about the universe so you're
+
+where Einstein was born the remainder
+
+are abstract facts things like
+
+scientists discover theories now these
+
+may not seem actually very useful but
+
+they're great from a schema discover
+
+your ontology discovery perspective if
+
+you want to do reasoning about the way
+
+the world is structured those facts very
+
+helpful and then we get accuracy results
+
+that are not perfect but certainly in
+
+line with other domain-independent
+
+techniques so about 80% for the abstract
+
+ones and eighty-eight percent for the
+
+concrete ones yeah this wikipedia is 2.5
+
+million pages out of this how many work
+
+in Wikipedia and those that work
+
+wikipedia what does the accuracy because
+
+for free place I mean just take one of
+
+these big app right the principal pity
+
+collections and that's the improvement
+
+if you can get eighty percent on stuff
+
+that wasn't there right so I can't tell
+
+you its overlap with Wikipedia right now
+
+um the thing to observe though is that
+
+we're operating over generic web text so
+
+if you believe that there are facts in
+
+the universe that aren't in Wikipedia
+
+then hopefully we do quite well on it or
+
+we have a stab a tree at collecting
+
+these facts um in addition the abstract
+
+ones things like scientists discover
+
+theories these aren't going to be in a
+
+structured form in freebase or Wikipedia
+
+at all right these are those databases
+
+are going to be raw collections of
+
+concrete assertions about the world
+
+just important discoveries and stuff
+
+like a dirt pages like this movie but
+
+again I think it might you might not
+
+have enough redundancy prefer stuff
+
+that's not in Wikipedia already you're
+
+right there's a there's an interesting
+
+investigation to do which is how large
+
+is the space of objects that are
+
+frequent enough on the web to detect but
+
+infrequent enough that they don't show
+
+up in Wikipedia and that will be a great
+
+first project for me to do after I'm
+
+done with my work here are you doing
+
+yeah efficient what's what was your
+
+purpose this is a gengineer equipped
+
+crawl so we we started it with us or the
+
+dmoz links and did a breadth-first
+
+search yeah
+
+oh great we you know ask some hapless
+
+grad students to assess a few thousand
+
+examples of whether they're just simply
+
+factually true and if two of them agree
+
+that it's true then we count to this
+
+true yeah ah the the question is whether
+
+it accurately reflects the fact asserted
+
+in the sentence so you do have a sense
+
+yeah okay so here are a few more
+
+experimental results when we compare
+
+this to a competing system one of my
+
+previous projects where you have to
+
+indicate the relationship ahead of time
+
+our error rate is actually a third lower
+
+on a set of ten not chosen relationships
+
+and the reason here is that we and our
+
+including a lot more sort of this
+
+contextual information these lightweight
+
+features that our system generates but
+
+the point is that we're very competitive
+
+with these projects that couldn't scale
+
+to the entire web when it comes to
+
+performance you'll we take about 85 CPU
+
+hours for this entire corpus which was
+
+on the order of roughly 10 million pages
+
+in this case went on our computing
+
+system you the note all project we were
+
+taking six point three hours per
+
+relation so in this sample we found
+
+278,000 unique relationship strings now
+
+a lot of these are synonyms and a lot of
+
+them don't make sense however if you
+
+want to extract everything on the web
+
+the naive approach would be to ask a
+
+more traditional system to please
+
+extract each of these 278,000
+
+relationship strings and when you
+
+consider from that angle you the
+
+improvement that our technique gets is
+
+many orders of magnitude that it's
+
+infeasible even if you count the set of
+
+plausible relations which we believe is
+
+on the order of 10 to 20,000 it's still
+
+far more efficient to use our technique
+
+rather than one in which you have to
+
+enumerate the relationships ahead is by
+
+ton and as a further note as a note of
+
+the computational scalability we have
+
+run this on a much larger corpus of over
+
+half a billion pages and in that case we
+
+get over to
+
+million unique topples so this can
+
+actually be applied to a very large set
+
+and and successfully so if some of the
+
+contributions here are open IE
+
+architecture for things can you get good
+
+results in a domain-independent way and
+
+also we were to result or we reduce the
+
+runtime substantially so from a systems
+
+perspective and from an algorithmic
+
+perspective and from a so domain scaling
+
+perspective we've beaten the traditional
+
+extraction systems yeah you said you use
+
+this sort of simple classifiers instead
+
+of the full courses yeah that's right do
+
+you know to what I said that made your
+
+accuracy worse and he'd use the full
+
+parse to do a little bit more accurate
+
+ah it would have been these experiments
+
+exists but I can't tell you the numbers
+
+off the top of my head we got one of my
+
+fellow students has went on to do more
+
+work in the extraction area and examine
+
+the difference of these but I can't tell
+
+them to you right now yeah qingyun is on
+
+John station earlier if you'd be more
+
+selective about the documents duty
+
+process yeah would you have been men
+
+and almost as good you know in terms of
+
+numbers of relationships and position um
+
+you know I think the thing that I
+
+noticed that confuses the system a lot
+
+are these if you find a piece of
+
+pathological text that makes it way past
+
+the initial classifier and also for
+
+mechanical reasons might be reproduced
+
+many times so for example if you have a
+
+piece of boilerplate legal text which
+
+makes some assertion that we have a Miss
+
+parse then the fact that it's on the
+
+bottom of a zillion different webpages
+
+is really going to provide a lot of
+
+confidence that it's totally correct so
+
+there may be something to be said about
+
+throwing out one page versus another
+
+because you believe site a is more
+
+credible than site B what I think would
+
+be more productive is looking at us
+
+different sub-regions of a given page to
+
+say that there seems to be one part of
+
+the page that was written by a human
+
+being another part that was reproduced
+
+by a machine and another part that is
+
+navigational text and focusing only on
+
+the stuff that matches our sort of a
+
+intellectual model of how the text is
+
+being emitted because certainly that
+
+that assumption that true facts are
+
+repeated and untrue ones are not
+
+repeated that doesn't apply when you're
+
+talking about mechanical reproduction
+
+yeah Google is from through their
+
+relationship that are accurate let's say
+
+highly accurate right it's too much
+
+develop useful as in some
+
+so have you looked at trying to solve
+
+try to make and worse some tasks where
+
+you can evaluate our this useful
+
+relationships that were extracting you
+
+think that jesús data and we have from
+
+every creak in the u.s. that it would
+
+longitude we have kind of tens of
+
+millions of fact yes if I try to apply
+
+there to any of these tasks is not going
+
+to help me much as the other comedians
+
+one question so they try to panel
+
+evaluate was the usefulness of this
+
+unstructured where we've done we've done
+
+assessments on but the question is here
+
+is substantially how do you pick the
+
+workload that you're going to run
+
+against it right what is the you can
+
+take one approach from simply assessing
+
+the accuracy of the raw facts that
+
+you've discovered which at which I
+
+described here another point would be on
+
+a established workload of facts
+
+something that everyone agrees are
+
+interesting to what extent can you
+
+reproduce them and on these on the eggs
+
+on the experimental result that I
+
+mentioned first those ten randomly
+
+chosen facts are chosen from have the
+
+most frequent extractive relationships
+
+you with some filter for throwing out
+
+the garbage ones and these are you very
+
+plausible ones like was born in found
+
+invented the things that would make
+
+sense to you and me to that limited
+
+extent we can say that we're very
+
+compute we do a great job at reproducing
+
+these now how useful is the long tail of
+
+true fats we havin to say we haven't
+
+judged that against some kind of other
+
+we haven't it we haven't assessed how
+
+useful the long tail of true but you are
+
+not as common as its first handful of
+
+facts are as partially because it's very
+
+difficult to say that there's no
+
+accepted library of things that are
+
+undeniably true and useful and a genre
+
+like this um we're trying to get that
+
+we're trying to approach that a little
+
+bit in that query system i mentioned
+
+earlier um and you know how good is it
+
+for a kind of structured search
+
+perspective and we only have anecdotal
+
+evidence of that so far nothing that's
+
+uh
+
+sickly reliable yep same relation seems
+
+like one of the problems he might have
+
+is like I wanted to find you find me all
+
+the people born in 1915 yeah get some
+
+but it was expressed slightly
+
+differently even though the same
+
+relation might not give the other ones
+
+in the experiments I showed you here we
+
+are doing some kind of you know some
+
+linguistic normalization so very small
+
+differences in expression will collapse
+
+into a single relationship in later work
+
+that I don't talk about here we did work
+
+that you automatically collapses
+
+synonyms that have been computed using
+
+statistics that are based on the the
+
+dirt method from linen pant l so that
+
+basically looks at do you have a lot of
+
+entities that seem to overlap to an
+
+unusual extent with the same string so
+
+created and invented I they're not
+
+technically exactly the same but they're
+
+often used colloquially in the same
+
+manner and so we find those as synonyms
+
+for example we even though by any kind
+
+of string at a distance metric you would
+
+never find them yeah um you you can do
+
+that um the there's work by Alex Yates
+
+who's a graduated member of my group who
+
+did this in who built a system in this
+
+way that is sort of a left and a right
+
+handed algorithm you know it works for
+
+some time to build up a synonym set then
+
+performs the inverse operation where you
+
+try to look for relationships that have
+
+uniquely airing of certain strings and
+
+to some extent you can find aliases so a
+
+Einstein and Albert Einstein will come
+
+out of something like that yeah what are
+
+you doing
+
+we don't try to do reasoning over this
+
+right now so I that I an unpublished
+
+work we've done a little bit of that so
+
+for example um you can extract George
+
+Bush is the president and Barack Obama
+
+is the president right these facts can't
+
+be true simultaneously but that's only
+
+because we know that certain things
+
+about the presidency it is theoretically
+
+it's very difficult but possible to
+
+extract certain thing things like
+
+functional relationships and your data
+
+to know that only one person can be the
+
+president at a time and I don't have any
+
+published work in that area yet though
+
+I've played around with someone okay and
+
+I should say that a lot of those
+
+problems are pretty similar to data
+
+modeling things so things you
+
+constraints that a schema designer might
+
+put in their database map pretty
+
+effectively to a lot of these kind of
+
+factual conflicting problems but in the
+
+limit its kind of AI complete so area
+
+for future work all right so let's jump
+
+into another form of structured data on
+
+the web which comes as tables so here's
+
+our database from earlier on the bottom
+
+half of this page and as I mentioned
+
+here's our schema that we can extract
+
+from the page so there's a lot of
+
+structured data here there's not only
+
+the contents there's also the schema
+
+information now here's the on the
+
+right-hand column here you can't make
+
+out the details but we can make out is
+
+that this page is actually pretty big
+
+what I showed you earlier it was just a
+
+very tiny snippet of it so here's the
+
+piece of the database I showed you
+
+here's another HTML table on the same
+
+page which has the letter has a single
+
+row and twenty six columns A to Z now
+
+that's an HTML table but it'd be a
+
+pretty dumb relational database to
+
+create no one's starting up the sequel
+
+server and plugging that into it in fact
+
+if you look at the pages overall there's
+
+16 HTML tables on this page and the vast
+
+majority of them are used for layout or
+
+for some kind of eccentric purpose
+
+that's not transmitting relational data
+
+so our first challenge in this project
+
+is going to be to find the items that
+
+actually do to transmit reasonable
+
+structured data the second one is
+
+because these databases that we extract
+
+often time or at some form they do have
+
+a schema because we believe
+
+the columns are typed but they also
+
+often have a very precise or a label
+
+schema because of it you know most of
+
+the time people put labels at the top of
+
+these columns when we process this at
+
+very large scale we can get a huge
+
+number of schemas people have talked
+
+about work doing on schema collections
+
+in the past but we believe we have this
+
+at a scale that no one's ever had before
+
+and so a second challenge of this
+
+project is what can you do when you have
+
+all the schema information and that's
+
+going to be mainly what I talked about
+
+today but I'll talk a little bit about
+
+the architecture of how we find these
+
+tables in the first place so this is the
+
+web tables project and the rough pipe
+
+line is that we start with a very large
+
+rock crawl of the web again it's not a
+
+focus toward tailored to any one domain
+
+use a simple dom parser to find the raj
+
+tml tables from this use a series of
+
+classifiers to recover the relations
+
+that is filter out what we believe are
+
+being used for page layout or some other
+
+purpose and then finally and then also
+
+recover the schema where possible and
+
+then finally construct a database of
+
+schema statistics so it basically counts
+
+over all the schema usages and build
+
+some see applications on top of that so
+
+when I talk about a database or a
+
+relation are our notion of relational
+
+database always just has a single table
+
+in it and we have columns that have
+
+types which we estimate because you
+
+often times text doesn't have a declared
+
+type you have to figure it out from
+
+what's actually there and then labels
+
+that we can reconstruct from the page
+
+now we had a very large crawl in this
+
+case which had 14 billion raw HTML
+
+tables in it and we estimate that it
+
+contains about 154 million good
+
+relational databases that came from
+
+taking a very large sample of these and
+
+again asking some unfortunate grad
+
+students to markup what seemed like
+
+high-quality structured databases so our
+
+filtering system our extraction system
+
+has two stages one is simply to say yes
+
+or no to a relation whether it's a
+
+relational database another is to say
+
+yes or no as to whether the first row of
+
+that database is transmitting labels for
+
+the columns we use in both handwritten
+
+and statistically trained classifiers
+
+for this and the features that we use
+
+tend to have some rough correspondence
+
+with database modeling techniques so for
+
+example
+
+oftentimes when you're designing a
+
+database you'll say whether it's
+
+acceptable to have a null in a certain
+
+cell that's a constraint you can place
+
+on it in our case the number of nulls in
+
+your data but able is a you correlates
+
+very highly with the quality of the
+
+table that if you have a database that's
+
+basically empty then it's probably not a
+
+very good relational database and most
+
+of our in our compared to our test set
+
+we'll say it's not a relational database
+
+at all we also do other things like a is
+
+part of your schema declaration and
+
+traditional database you'll have to say
+
+what the type is for any one column well
+
+we try to look at the contents of a
+
+single column see whether there are
+
+number versus string conflicts or
+
+numerical and date conflicts and things
+
+like that four columns that are entirely
+
+strings we try to guess as two types by
+
+seeing whether there's huge variance in
+
+the string length so the idea is that
+
+you strings that are drawn from a single
+
+type will tend to be very roughly the
+
+same length if you have strings where
+
+one entry is five characters in the next
+
+entry is two thousand characters this is
+
+probably not a coherent type that we're
+
+talking about so when we I'm not going
+
+to go in the details of the extra of the
+
+classifiers in any any length only to
+
+say that we get you again like all
+
+domain-independent extractors we get
+
+good but not fantastic performance out
+
+of these that recall tends to be in the
+
+80s we tuned the relational filter for
+
+high recall of the expensive precision
+
+that's ok for the applications will talk
+
+about for metadata detection we can get
+
+precision you know close to ninety
+
+percent on these things for saying yes
+
+or no as to whether someone has put
+
+labels in place now that means we
+
+extract about 271 million databases of
+
+which 125 million we believe are good
+
+and it means as I mentioned over about
+
+two and a half million unique relational
+
+schemas a schema in this case is just a
+
+bag of attribute labels ah the schema
+
+use I yeah that's two and a half million
+
+unique schemas try to combine the
+
+uh if they match there's lots of
+
+different ways of expressing human
+
+headers right so if if the set of
+
+attributes is identical to another set
+
+of attributes then those count as a
+
+single schema from this counts
+
+perspective if they overlap if you have
+
+one schema that says make model I know
+
+that says make model year we count those
+
+as two distinct schemas now we do make
+
+use of the fact they overlap in the next
+
+slide so we're going to gather a bunch
+
+of very simple counts over these
+
+statistics so whenever we see is
+
+individual database here we make model
+
+year and a single entry in the database
+
+will simply bump a count for an entry
+
+that's labeled with all the attributes
+
+in the schema if we find another
+
+database that no matter how many tuples
+
+it has in it we'll count that as simply
+
+another occurrence and we duplicate for
+
+website here so some kind of crazy fan
+
+of used cars can't plug 10,000 examples
+
+of his own favorite schema and skew the
+
+results here we do we kind of do a very
+
+simple form of a anti schema spamming
+
+here if we have one that overlap
+
+slightly as i mentioned bake model year
+
+in color we count that as a separate
+
+count in our statistics database and so
+
+on for a number of other different
+
+schemas another point this this isn't
+
+doesn't seem very sophisticated but the
+
+point here is that once we have all
+
+these statistics we can compute a bunch
+
+of probabilities over attribute use so
+
+given a randomly chosen database from
+
+what we consider the universe possible
+
+databases I can tell you the probability
+
+that you'll see make versus the
+
+probability that you'll find zip code in
+
+it further and more interestingly you
+
+can compute conditional probabilities so
+
+what's the probability that you'll see
+
+make given that model is already in the
+
+table and also what's the probability of
+
+seeing make given that zip code is
+
+already in the table hopefully the
+
+probability of that left-hand quantity
+
+is much higher than the right hand
+
+quantity do you have questioned the back
+
+so brand model year recover
+
+count a different scheme there's no
+
+indication that attribute the right if
+
+if the two bags are the two sets of
+
+attributes only overlap but are not
+
+contained in each other they're not
+
+exactly equivalent than those count is
+
+two distinct schemas also look at the
+
+same he was used in different qualities
+
+yes so name is the most popular
+
+attribute out there and that's used in
+
+file listings in mp3 listings in rolodex
+
+style address books name or name is used
+
+all over the place so I'm going to talk
+
+about two applications that we build on
+
+top of this data the first is going to
+
+be what I call a schema auto complete
+
+tool so the idea here is that we have
+
+some kind of novice and database user
+
+who shows up and wants to make a small
+
+database and we are going to have tab
+
+complete on the schema design for that
+
+person so they enter make hit tab and
+
+all of a sudden we're going to try to
+
+output make model year in price to say
+
+here are the probably pretty useful
+
+attributes that you have now the the
+
+algorithm here is going to be very basic
+
+we're simply going to have an input set
+
+of our of assumed attributes basically
+
+what the user has entered and what our
+
+algorithm has already emitted and we're
+
+going to repeatedly omit the most
+
+probable next attribute you conditioned
+
+on what's already there and the
+
+important thing to note is that this
+
+would be not possible if it weren't for
+
+these probabilities that we've already
+
+computed because we did extraction at
+
+such large scale here's some sample
+
+outputs that we can get from it so we
+
+ask the system please compute the schema
+
+for name and we what we omit in this
+
+case is named size last modified and
+
+type now your point earlier that name
+
+might be used in multiple different ways
+
+that's true so this is not the only
+
+schema that you could get from name and
+
+simply uh you know what our precise
+
+algorithm here has emitted what's not
+
+even necessarily the most probable but
+
+isn't very rough approximation less
+
+probable if you run or to run the
+
+algorithm several times and sort of
+
+disqualify previous attributes then you
+
+can again have an approximation of
+
+different schemas in the area so if you
+
+enter instructor then will enter
+
+we'll admit something that roughly
+
+corresponds to a course announcement
+
+style schema and similarly for these
+
+others so if there are not us-born
+
+people in the audience this a B sins for
+
+at-bats and is basically a schema of
+
+baseball statistics information so this
+
+appears all over the place in various
+
+newspapers and such so we've reproduced
+
+a box score here and there are a lot of
+
+other examples in the paper here now
+
+when we asked human users to try to do
+
+the same task that is I give an
+
+experience schema designer the word name
+
+and asked them to come up with the same
+
+schema we want to see the extent to
+
+which our system can mechanically
+
+reproduce what a human would do so for
+
+each of these we asked to human beings
+
+to write their own schema and found
+
+consider the intersection of their
+
+outputs as the true set so we're two
+
+human beings agree on what the relevant
+
+schema is that's what we think is the
+
+target set of our algorithm in this case
+
+we ran the system three times you're the
+
+moat the first schema we met the second
+
+of the third and see the extent to which
+
+we can reproduce what the humans did so
+
+we consider schema design kind of a high
+
+level trained cognitive task yet in this
+
+case when we consider the top three
+
+scheme as we can see that we produce
+
+over this your reasonable workload of
+
+demands over sixty percent of what a
+
+human being would do so the second
+
+application of this data I want to talk
+
+about is synonym discovery so the task
+
+here is again given a domain we want to
+
+compute all the relevant synonyms in the
+
+area and this is something that is often
+
+assumed in the data in the data
+
+integration literature so when you want
+
+to merge two databases it's very handy
+
+to know that amp equals M PI D and that
+
+they should map to each other now that
+
+that's assumed as an input in a lot of
+
+systems but actually compiling that
+
+resources a lot harder than you might
+
+think not only are there a lot of
+
+interesting ones that Rogge's isn't
+
+going to contain right most people
+
+aren't saying employee and subsidiary
+
+worker or whatever your linguistic
+
+synonym of employee would be there often
+
+using either technical language or these
+
+kind of typographic synonyms like here
+
+telephone equals tell pound in practice
+
+your these diction
+
+areas are only built up through a lot of
+
+sweat that people find what doesn't work
+
+and add a new entry to the database if
+
+we can compile this automatically it
+
+would be a big help to people so the
+
+solution is going to rely on a handful
+
+of observations first is that two
+
+synonymous attributes generally won't
+
+appear in the same schema together ah
+
+that it doesn't it wouldn't make any
+
+sense for them to co-occur the second is
+
+that we don't want to just have trivial
+
+synonyms you know for things like
+
+misspellings oh there may be
+
+applications which that's useful but for
+
+the moment we're going to assume that we
+
+only want attributes that actually occur
+
+some bare minimum of them a number of
+
+times and then finally that they should
+
+keep the same company that attributes
+
+that are synonymous I should have Co
+
+schemas that are very similar we can
+
+discount we can summarize these
+
+observations in the following scoring
+
+function for two candidates synonyms a
+
+and B so we come up with a synonym score
+
+for two candidates a and B and I'm not
+
+going to go into too much detail about
+
+how this works except this point out
+
+again that we rely very heavily on these
+
+marginal and conditional probabilities
+
+that we compute from the extracted
+
+corpus of schema information and here
+
+are the results that we get out of it so
+
+when I ask someone to come up with name
+
+we get the here the the top-ranked
+
+synonyms from the system so e dash mail
+
+equals email phone equals telephone date
+
+equals last modified and so on oops for
+
+instructor we get a lot of things that
+
+are again relevant to the course
+
+announcement area so that course title
+
+equals title course equals course pound
+
+and so on and here's the other doing is
+
+that I mentioned earlier and again if
+
+you are a baseball fan you note my
+
+finest achievement as a researcher which
+
+is a note that strikeouts equals K
+
+according to the system so k is kind of
+
+an obscure shorthand for saying
+
+strikeouts in the baseball universe and
+
+technology can now find that out so
+
+everyone will be relieved about that and
+
+again there are more examples of this in
+
+the paper and for the again for the real
+
+estate domain you have things you have
+
+similar things that price equals rent
+
+when you're talking about real estate so
+
+when we evaluate these it so it's tough
+
+to say how many pure sense with a recall
+
+is how many synonyms are there are in
+
+the world so instead we're going
+
+to test whether the system has imposed a
+
+high quality ordering on the set of
+
+synonyms whether the top ones that we
+
+emit are better than the later ones that
+
+we emit yeah fraction of those are not
+
+catchable just simple syntactic rules
+
+such as globalization punctuation and
+
+bounds and name and title ah I think
+
+that is I think that I won't I don't
+
+have any numbers on that the I think
+
+they said of universally applicable and
+
+useful syntactic operations is pretty
+
+small and there's some evidence in this
+
+as to even vary on you in a general case
+
+even very simple syntactic operations
+
+likes a sentence tokenization are kind
+
+of famously difficult when you're
+
+processing these either from an NLP or
+
+search style perspective right so I that
+
+would be an interesting experiment to do
+
+i'm not i'm not super optimistic that
+
+those rules exist sure is this all only
+
+in English ah the experiments are only
+
+in English but I i we constrained
+
+ourselves to english-language web pages
+
+but there's nothing about it that would
+
+prevent you from applying to known it or
+
+not in this experiment um there is it's
+
+an interesting thing to talk about
+
+whether some of the techniques that I've
+
+talked about I think they would apply
+
+pretty universally in western style
+
+languages I don't think they would apply
+
+in Korean for certain reasons or at
+
+least the text runner things you run
+
+into difficulties in other languages
+
+that have different styles of use but at
+
+least in western languages these these
+
+seem to be pretty widely applicable okay
+
+so let's take a look at again the sort
+
+of ranking of things and we can see that
+
+as we go from the top five the second
+
+five the third 5 and so on we do have a
+
+very reasonable drop off and the average
+
+number of true synonyms that we're
+
+finding so this is a rough summary of
+
+how well our ranking of sin of potential
+
+synonyms in the world is actually
+
+working so the contributions here are
+
+that we've actually achieved a pretty
+
+novel data set for the first time that
+
+uh there have been attempts to recover
+
+tables from databases from tables in the
+
+past but they have operated only a very
+
+low scale ah and we estimate that we're
+
+at least five orders of magnitude larger
+
+than some of these previous collections
+
+and that further being so large enables
+
+us compute these stats that lets us do
+
+these novel applications on top of it
+
+okay so I'm going to talk about one last
+
+task which is on how you deal with
+
+multiple tables and to some extent how
+
+you deal with I each email lists on the
+
+web so data integration sometimes known
+
+as mashup tools when applied to a web
+
+setting you know the they're often
+
+always the existing web tools are often
+
+designed from a very traditional
+
+database perspective so for example they
+
+assume that the user knows about all the
+
+potential data sources which again is
+
+very reasonable in a traditional
+
+database setting and they also ask an
+
+administrator to write wrappers about
+
+existing data sources so if your data
+
+source doesn't come in XML eventually
+
+there's not much you can do with most
+
+rap mashup tools out there but these are
+
+totally unreasonable for the vast
+
+majority of data out there that users
+
+are never going to know about all the
+
+data sources and also the vast majority
+
+of data doesn't have wrappers around it
+
+and we don't want to ask a administrator
+
+to come write a wrapper for the top you
+
+5,000 web demands um when we go through
+
+our proposed system will find the line
+
+between integration and extraction is a
+
+little bit blurred so let's first
+
+walkthrough I'm going to describe a walk
+
+through the application and here we're
+
+going to the challenge is to find a set
+
+of all the cig mod committing program
+
+committee members so again this data is
+
+scattered over a dozen different
+
+websites from sigma over the last few
+
+years and the data has never been
+
+presented in a coherent way intended for
+
+reuse as i mentioned it should be easy
+
+to obtain this data but it's very
+
+difficult for humans nowadays we're
+
+going to implement this octopus is going
+
+to offer these solve this problem by
+
+offering a handful of operators and
+
+these are more similar to model
+
+management operators in that they try
+
+their best effort ones that try to emit
+
+high-quality results they're not likes
+
+traditional sequel database operators
+
+that might have you that have a
+
+correct or incorrect answer to them so
+
+the four here uh search simply finds a
+
+set of relevant relations for you split
+
+will try to transform an HTML list into
+
+a full table so a list is you can think
+
+of as a often appears as a relational
+
+database where the calumny brakes have
+
+been lost that people will simply blurt
+
+out Mike Carroll University of
+
+Washington 2005 as the relevant tupple
+
+for a row in the database often without
+
+even any kind of typographic clues as to
+
+where the brakes come either human
+
+readers assume to make the brakes
+
+naturally but that's obviously
+
+impossible for a machine the context
+
+operation is going to recover useful
+
+data from the surrounding text so for
+
+example most examples of structured data
+
+might appeal up here on a website that's
+
+tied to a certain year that year is not
+
+going to appear on every row in the
+
+tupple if it in a lot of cases
+
+colloquially you find that data that
+
+applies to every row in the database is
+
+putting the title of the page or in the
+
+surrounding text not into the table
+
+itself we want to recover some of that
+
+information because we're going to do
+
+manipulation of the data after the fact
+
+join this will let you do a little bit
+
+further query I'm not going to talk
+
+about it today but just to acknowledge
+
+that it exists you want to find the
+
+students of Sigma on PC members so
+
+essentially does a another kind of
+
+search query for every entry in a
+
+database you've already constructed so
+
+let's take a look at the interface for
+
+the demo tool that I've constructed so
+
+far so here you have a very generic
+
+search box tile interface and the user
+
+enters Sigma program committee this is
+
+the equivalent to invoking the search
+
+operator what we get back is a very
+
+large scattering of tables but every
+
+item here circled in red is an
+
+individual database that we've extracted
+
+from somewhere on the web every row
+
+represents a cluster of these databases
+
+so we believe that these databases are
+
+both topically similar and also have
+
+some amount of structural compatibility
+
+so it will be rare or we hope it would
+
+be rare to find one table with a single
+
+column and another table of ten columns
+
+that these everything in a cluster is
+
+meant to be union about
+
+let's examine one particular cluster so
+
+in this skit in this case one of the
+
+tables is a single column or a double
+
+column table where the first column is
+
+the reviewers name and the second column
+
+is the institution or that person can be
+
+found in this case stairs are beatable
+
+is the first entry and he's from INRIA
+
+like the table says here now you can
+
+think that these operators are
+
+essentially attempting to reconstruct a
+
+more traditional kind of a local as view
+
+data integration representation we never
+
+ask the user to think of it that way but
+
+the operators present our best guess as
+
+to what that description should be and
+
+then through mechanical means the user
+
+can interact with the system and kind of
+
+edit that description so in this case
+
+the system has made a guess as to what
+
+the relevant contents of this cluster or
+
+this Union assertion ought to be and we
+
+find that it made a mistake in a couple
+
+places so the user can simply x them out
+
+and the system will automatically try to
+
+repopulate it with different better
+
+tables in this case this table looks
+
+exactly like the one I showed you
+
+earlier but it was reconstructed from an
+
+HTML list not an HTML table and so we
+
+simply had a raw string that had the
+
+entire contents of a row in it and you
+
+can see we occasionally make mistakes
+
+like here we've broken someone's first
+
+name and last name incorrectly you can
+
+make you again hand modifications as
+
+earlier you can split things by hand if
+
+you find difficulty and so on alright so
+
+here we might want to we want to be able
+
+to find recover context from the
+
+surrounding page so here we have a
+
+typical two column table that we found
+
+on a number of different web pages we
+
+invoke the context operator and the
+
+system is going to suggest a number of
+
+values that it thinks apply to every row
+
+in the table so in this case we're going
+
+to find that Beijing in 2007 apply to
+
+every row in this table and sure enough
+
+this is this table was derived from the
+
+2007 Sigma that took place in China so
+
+we can adorn the table with us extra
+
+information and then when we Union them
+
+hopefully we have that across in
+
+of different websites and we can
+
+actually retain the the meta the the
+
+information that the website assumed was
+
+obvious to every human viewer but
+
+becomes non obvious when you try to
+
+aggregate multiple websites and finally
+
+we can compute a union of these things
+
+and the things to note once we actually
+
+join a union all these tables together
+
+is that we've recovered a database of
+
+243 tuples in this example 223 of which
+
+are totally correct both structurally
+
+we've broken them at the right places
+
+factually on these people actually were
+
+Sigma PC members and their institution
+
+is accurate and also from a forward I'm
+
+adding perspective we don't have one
+
+cell blank and one empty or one full for
+
+example and the cluster here we've drawn
+
+this from five different sources across
+
+three different years so often a single
+
+website will break things into your
+
+one-track versus another track and we've
+
+recovered that information here but no
+
+one ever reformatted this no one ever
+
+format of this data for reuse some of
+
+this is four or five years old and no
+
+one had any idea that I would come along
+
+it to try to out you'll mash it up with
+
+other people no one ever had to write an
+
+explicit extract or a wrapper with us
+
+and the user has only made about two or
+
+three mouse clicks you ones text query
+
+and two or three clicks to clean things
+
+up so the path from your notion of
+
+database to the actual final product is
+
+very very short I and I I've just
+
+mentioned these contributions so we're
+
+basically out of time but I'm gonna
+
+mention a little bit about future work
+
+in this area on the web tables project
+
+you i think that the autocomplete and
+
+the synonym computation are just the
+
+beginning of what you could do a lot of
+
+interesting semantic services on top of
+
+this data so for example you could have
+
+two operations which are sort of the
+
+inverse of each other database
+
+auto-populate where a user provides a
+
+schema and then you find that the
+
+database automatically appears this I
+
+think would be great in a kind of
+
+information workers style application
+
+like Excel where you want to do some
+
+operations over interesting data you
+
+type a few columns and all of a sudden
+
+you're working with the database and the
+
+road to getting into working is very
+
+very short on the reverse operation
+
+schema auto-generate is going to be
+
+useful in some settings where you have a
+
+bunch of
+
+data and you actually want to estimate
+
+what the right scheme is we've done I
+
+have a piece of published work in that
+
+area and how you might get that to work
+
+for octopus you're the data integration
+
+one what I showed you were screenshots
+
+from an a from a demo application which
+
+the user has to invoke very few
+
+operations their various systems reasons
+
+why the length of time between a mouse
+
+click and results is longer than you
+
+might like so what I just showed you
+
+took about news on the order of 12 to 15
+
+minutes to compute in some settings
+
+they're a bunch of systems level work
+
+you can do to try to speed that up to
+
+its interactive time and the joint
+
+operator that actually has been
+
+implemented that point so that's the
+
+longer future work on the longer term
+
+you constructing this database of
+
+everything makes you wonder whether
+
+domain independence has been an
+
+assumption of a lot of the work but
+
+there's some reason to believe that it
+
+gets you a lot of the way there and not
+
+quite all the way there so for example
+
+here are the five most popular
+
+relationships extracted from text using
+
+the earlier system I mentioned and here
+
+are the five most popular schema types
+
+that you extract using web data the web
+
+table system so here these are all
+
+fairly reasonable you things that human
+
+beings can do right this actually
+
+reflects pretty well the fact that we
+
+write about human comprehensible topics
+
+when you talk about table embedded data
+
+it tends to be a lot more transactional
+
+information so you have web access logs
+
+phone numbers album listings if you get
+
+further down you find things like
+
+manufacturing logs or products for sale
+
+things like that so the kind of data
+
+that you talk about seems very tied to
+
+the mode of expression in which you use
+
+that that use now I think the number of
+
+modes of expression out there it's
+
+probably greater than two but it's
+
+probably smaller than 50 so the actually
+
+writing and extractor for every
+
+reasonably popular mode of expression
+
+seems like a fairly you know plausible
+
+project and so a multi-model multi
+
+extractor method seems like the way to
+
+go to try to actually compose a very
+
+comprehensive database and this has a
+
+lot of overlap with a Model Management
+
+operators there's a deduplication
+
+challenge here at a scale that not many
+
+people have done previously
+
+and you want to do some new kinds of
+
+tools for sort of the extractor user
+
+interaction cycle which I think would be
+
+pretty interesting I haven't seen any
+
+existing work in it all right so I'm
+
+going to conclude and then get ready for
+
+questions but I hope I've convinced you
+
+that the structured web is already out
+
+there but it's in a raw form that none
+
+of our tools can actually use right now
+
+and a lot of the traditional database
+
+tools and information extraction
+
+approaches don't work when we apply them
+
+at such large scale and on such varied
+
+data but with the work I've described so
+
+far we can already process a large
+
+number of data types and kinds of data
+
+that are out there and together I think
+
+we're approaching the this is a vision
+
+of the mechanically addressable
+
+structured web we're not there yet but
+
+we've we've made quite a lot of progress
+
+so thanks very much and Allah take your
+
+questions schemas are loved life forms
+
+any thought to how you learned about
+
+schemas by looking at databases might be
+
+used
+
+don't get it the hidden web or just
+
+understand the forms that are out there
+
+too i yes certainly um we can do it
+
+would be very possible using the data we
+
+have to do some amount of say or here's
+
+one possible where you can do it using
+
+the data we have we could do some amount
+
+of schema clustering it try to identify
+
+schemas that are your marginally
+
+different from each other but are
+
+basically talking about the same kind of
+
+topic this would be very useful when
+
+talking about deep web access or you
+
+might have some amount of you might have
+
+a technique for exit accessing one
+
+particular schema either through human
+
+guidance or some other technique but you
+
+can't access all the forms that are very
+
+slightly different or you're not sure
+
+that you can by looking at our scheme
+
+information you could mechanically not
+
+only figure out that you should have
+
+good reason for accessing Form B but
+
+also using our data maybe you can make
+
+good guesses as to how to populate that
+
+form we've actually done relatively
+
+little work using the contents of our
+
+extracted tables but I think that's a
+
+pretty promising area we're already
+
+starting to do work in that Levi along
+
+of presidents of the United States and
+
+what is such a table like I mean many
+
+tables and web about the president of
+
+President organization and every
+
+organization
+
+table yo with the president in here and
+
+how can you distinguish life intrastate
+
+ways that found the president of the
+
+and we stabilizations so I doing so is
+
+not necessary for the projects I
+
+described here today we do have another
+
+application which does make it necessary
+
+which is something like a structured
+
+database search engine so someone types
+
+of queries say presidents of the United
+
+States and what they get back is not a
+
+ranking of URLs but a ranking of
+
+databases that we've recovered so
+
+hopefully the first database that they
+
+see is something like the one I showed
+
+and not a history of all the presidents
+
+of GE for example doing that is
+
+essentially a ranking challenge that
+
+involves a lot of different features
+
+which you can guess at features of the
+
+page textual ones things that are
+
+similar to search engines some that are
+
+unique to managing our structured data
+
+are things like do you have a text query
+
+hit on the schema itself as opposed to
+
+the contents of the database or
+
+alternatively it seems like in a lot of
+
+cases people are using the leftmost
+
+column as a key or a human
+
+comprehensible key to describe the
+
+entire tupple so if you have say
+
+population France population would make
+
+a great schema hit France would make a
+
+good euro ID or key hit right if you
+
+have a hit on both those two individual
+
+terms then this gives you a lot of
+
+strong evidence that the database you're
+
+talking about is a pretty relevant one
+
+for the query at hand if you're talking
+
+about presidents of the United States
+
+then you know you can imagine two
+
+different databases one where the pages
+
+title is presidents of the United States
+
+and it's a pretty good result another in
+
+which its presidents of the world and
+
+United States is simply a value in the
+
+table you know in the next row might be
+
+the president of France you know that's
+
+a that's a ranking challenge where you
+
+hope to wait a hit on the title of the
+
+page more strongly than a random hit in
+
+the middle of the page contents yeah
+
+that work is challenging but we
+
+intellectually know how to do it
+
+and you how do we find if I progress in
+
+the future keys you're saying we made a
+
+lot of projects but there's only
+
+anecdotal evidence you're there right
+
+cool and slide 39 or so ghetto some
+
+relationships i'm not sure that those
+
+who are random examples because i don't
+
+expect random examples to be dead night
+
+I mean of columns and they got so and
+
+this thing I got three years of seed
+
+money instead of and looking at three
+
+pages at week it didn't solve the
+
+problem it was a nice example you get
+
+high accuracy although not perfect yeah
+
+but in order for this to be usable I
+
+mean this is nowhere near usable to me
+
+well how do we quantify progress in the
+
+future in your visions so we do to start
+
+fun defying them in the eye especially
+
+in this last point I've express cribes
+
+in an anecdotal way here today we have
+
+experimental results on what we believe
+
+is a plausible workload of queries so a
+
+major challenge in this area is that
+
+there's no existing workload for say you
+
+structured queries over a search engine
+
+the replies with databases instead of
+
+URLs you can't just use search queries
+
+because you know Brittany would be
+
+there's no one's looking for structure
+
+tables about Brittany right there's a
+
+set of things that are plausible things
+
+for looking at structured data the way
+
+that we solve this in so in our paper we
+
+get decent results over a lot of work
+
+load of about a hundred or so your
+
+domains the way that we chose that
+
+workload in our case here was we didn't
+
+want to poison it in the way you
+
+described by hand choosing things so we
+
+asked people on the Amazon Mechanical
+
+Turk to say if you were looking yo we
+
+phrased in a certain way but the way of
+
+it we did it was try to suggest examples
+
+of structured data in the universe and
+
+whatever people on Mechanical Turk you
+
+told us that's what we use is our
+
+workload that is a admittedly very
+
+flawed approximation of what I think
+
+will be a workload on these kinds of
+
+systems in the future but it's the best
+
+we can do right now
+
+but but I'm just saying that probably we
+
+need to formalize this problem much
+
+better for in the future in depth of
+
+because challenge me yeah actually to
+
+know when we made a lot of progress or
+
+when we had just patch the water because
+
+as of now there are lots of work in this
+
+wall yeah and each work claims progress
+
+but it's not clear how usable all this
+
+is in a continent in a real search but
+
+or I know even academically how do you
+
+compare it to season but what you're
+
+describing is a real challenge but I
+
+point out that in a similar in the
+
+similar case of search engines it's very
+
+difficult to say even where we have much
+
+better data in search than we do here
+
+you can only say in a very very
+
+constrained way where the search engines
+
+are getting better or not one way you
+
+can do is simply by doing an a/b test of
+
+one ranking algorithm versus another on
+
+an identical workload right and we have
+
+a very good idea of what that workload
+
+should be because we've been running
+
+search engines for 10 years or more if
+
+you want to say our search engines today
+
+better than search engines were five
+
+years ago that's actually kind of
+
+intellectually incoherent question in
+
+some ways because not only is the
+
+workload changing but also the
+
+underlying structure of the web is
+
+changing and there are a lot of
+
+difficulties so even in the area that is
+
+it we universally agree is useful where
+
+we have a ton of data where there's a
+
+ton of money in it we can only in a very
+
+loose way you'll kind of assess our
+
+progress so doing so is going to be very
+
+difficult in the setting that I
+
+described yeah the first but if you talk
+
+to the second part of your daughter out
+
+of the second part learning from tables
+
+you seem to be learning only this kamata
+
+not so much
+
+so we started to do more work in that
+
+area so one example is the kind of
+
+database auto population stuff that I
+
+mentioned in future work which is more
+
+closely ongoing work where you may want
+
+to say you give the system an example of
+
+a class say City and then we
+
+automatically omit contents examples of
+
+city that we've derived from the
+
+contents of these databases it can be a
+
+little trickier than that because the
+
+label that you find in a structured
+
+database is not necessarily a good class
+
+label for something you know one
+
+database might have city which is a
+
+pretty great class label another one
+
+might be place of birth which is a worse
+
+one right I mean you don't think of San
+
+Francisco is a place of birth it's a
+
+city and so the there's work you have to
+
+do to try to find mappings between these
+
+things so there's a sort of our thinking
+
+right now that there's a handful of
+
+labels that we view as kind of good type
+
+labels and then another and then we have
+
+to find have containment relationships
+
+between these so we know that places of
+
+birth are probably contained within the
+
+set of cities San Francisco or
+
+California cities are contained within
+
+cities and you we might find other sets
+
+that overlap so we're approaching from
+
+that perspective that we have examples
+
+of objects in the universe that have
+
+been labeled with something by a user
+
+and by looking at how the sets overlap
+
+we may be able to get information about
+
+how the labels semantically overlap yeah
+
+table is a set of facts yeah you
+
+updated
+
+you know that it takes facts that you
+
+learn in the first part of your talk
+
+well one problem is the thing I
+
+mentioned at the end of the talk which
+
+is the set of facts that you extract and
+
+text versus the set of facts you extract
+
+from tables they're very different and
+
+so in one sense that's great because it
+
+means our corpus of knowledge about the
+
+universe is getting better in another
+
+sense it's a little disappointing
+
+because you can't use the two to kind of
+
+check each other or to populate each
+
+other in some way so we find a lot of
+
+places of birth and biographical style
+
+information in the text case I'll have
+
+transactional information in the web
+
+case the overlap somewhat but for
+
+example place of birth or born the born
+
+in attribute is I think the third most
+
+popular in the text case I think born in
+
+when it's a place is something like the
+
+900th most popular in a structured
+
+setting and when you talk about born in
+
+as a date it's like the 3000th most
+
+popular so the use cases are quite a bit
+
+different I that might have been an
+
+interesting aside I don't know if I've
+
+actually answered your question we can
+
+talk about it more or after the fact ah
+
+okay are there any more questions yeah
+
+you mentioned between two and fifty
+
+modes of
+
+an expression sure requires yeah can you
+
+give a couple of examples so your text
+
+is a big one on your tables and lists or
+
+another I think tagged data objects are
+
+probably another that you may be able to
+
+recover some structured information from
+
+simply the combination of like a unique
+
+identifier and then words that describe
+
+it other modes would be subsets of texts
+
+that are more semantically trap or
+
+computationally tractable so our model
+
+of text right now is very basic that you
+
+can express a very complicated
+
+relationships and text but we assume
+
+things like an extracted fact is always
+
+true there's no notion of time right I
+
+think that a textual extractor that had
+
+more of a temporal idea in it would be
+
+you could consider another mode of
+
+expression another my another that
+
+people have worked on very successfully
+
+are extracting data from Wikipedia style
+
+objects so people use the info box some
+
+people have used the notion of sets or
+
+lists that are in Wikipedia and
+
+Wikipedia self has some notion of time
+
+so you can look at the previous holder
+
+of various offices in the next holder
+
+various offices I don't actually i was
+
+using 52 kind of stand bag it if i had
+
+to guess I'd say it's more like a dozen
+
+or at least you get most of the useful
+
+data out there with a lot fewer than 50
+
+I well thanks very much for your time I
+
+really appreciate it
+
